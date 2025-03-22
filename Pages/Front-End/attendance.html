@@ -54,44 +54,44 @@
 
         <!-- Main Content -->
         <div class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-6">Student Attendance Sheet</h1>
+            <form id="attendanceForm">
+                <!-- <div class="mb-4">
+                    <label for="studentName" class="block text-gray-700 font-semibold">Student Name:</label>
+                    <input type="text" id="studentName" class="border p-2 rounded-md w-full" required>
+                </div> -->
+                <!-- <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Add Attendance</button> -->
 
-        <h1 class="text-3xl font-bold mb-6">Student Attendance Sheet</h1>
-        
-        <table class="min-w-full bg-white border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="border px-4 py-2">Select</th>
-                    <th class="border px-4 py-2">Student Name</th>
-                    <th class="border px-4 py-2">Date</th>
-                    <th class="border px-4 py-2">Attendance Status</th>
-                </tr>
-            </thead>
-            <tbody id="attendanceTableBody">
-
-            </tbody>
-        </table>
+            </form>
+            <table class="min-w-full bg-white border border-gray-300 mt-4">
+                <thead>
+                    <tr>
+                        <th class="border px-4 py-2">Select</th>
+                        <th class="border px-4 py-2">Student Name</th>
+                        <th class="border px-4 py-2">Date</th>
+                        <th class="border px-4 py-2">Attendance Status</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceTableBody">
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
         document.getElementById('attendanceForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('studentName').value;
-            const image = document.getElementById('studentImage').files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const tableBody = document.getElementById('attendanceTableBody');
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <td class="border px-4 py-2"><input type="checkbox" class="attendance-checkbox"></td>
-                    <td class="border px-4 py-2">${name}</td>
-                    <td class="border px-4 py-2">${new Date().toLocaleDateString()}</td>
-                    <td class="border px-4 py-2">Present</td>
-                `;
-
-                tableBody.appendChild(newRow);
-                document.getElementById('attendanceForm').reset();
-            };
-            reader.readAsDataURL(image);
+            const tableBody = document.getElementById('attendanceTableBody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="border px-4 py-2"><input type="checkbox" class="attendance-checkbox"></td>
+                <td class="border px-4 py-2">${name}</td>
+                <td class="border px-4 py-2">${new Date().toLocaleDateString()}</td>
+                <td class="border px-4 py-2">Present</td>
+            `;
+            tableBody.appendChild(newRow);
+            document.getElementById('attendanceForm').reset();
         });
     </script>
 </body>
