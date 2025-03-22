@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <nav class="w-20 bg-blue-900 text-white p-6 md:w-64 transition-all duration-300">
+            <h2 class="text-2xl font-semibold text-center mb-6 hidden md:block">Attendance App</h2>
+            <ul>
+                <li class="mb-4">
+                    <a href="Dashboard.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-tachometer-alt text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="add_student.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-user-plus text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Add Student</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="attendance.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-calendar-check text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Attendance Sheet</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="view_profile.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-user text-lg"></i>
+                        <span class="ml-3 hidden md:inline">View Profile</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="settings.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-cog text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Settings</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="logout.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-sign-out-alt text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-6 text-center">Add Student</h1>
+            <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl mx-auto">
+                <form id="studentForm">
+                    <div class="mb-4">
+                        <label for="studentName" class="block text-gray-700 font-semibold">Student Name:</label>
+                        <input type="text" id="studentName" class="border p-2 rounded-md w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="fatherName" class="block text-gray-700 font-semibold">Father's Name:</label>
+                        <input type="text" id="fatherName" class="border p-2 rounded-md w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="class" class="block text-gray-700 font-semibold">Roll No:</label>
+                        <input type="text" id="class" class="border p-2 rounded-md w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="class" class="block text-gray-700 font-semibold">Class:</label>
+                        <input type="text" id="class" class="border p-2 rounded-md w-full" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="studentImage" class="block text-gray-700 font-semibold">Image:</label>
+                        <input type="file" id="studentImage" class="border p-2 rounded-md w-full mb-4" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full">Add Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('studentName').value;
+            const fatherName = document.getElementById('fatherName').value;
+            const className = document.getElementById('class').value;
+            const image = document.getElementById('studentImage').files[0];
+
+            console.log('Student Added:', { name, fatherName, className, image });
+            alert('Student added successfully!');
+
+            // Reset the form
+            document.getElementById('studentForm').reset();
+        });
+    </script>
+</body>
+</html>

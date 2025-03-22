@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <nav class="w-20 bg-blue-900 text-white p-6 md:w-64 transition-all duration-300">
+            <h2 class="text-2xl font-semibold text-center mb-6 hidden md:block">Attendance App</h2>
+            <ul>
+                <li class="mb-4">
+                    <a href="Dashboard.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-tachometer-alt text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="add_student.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-user-plus text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Add Student</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="attendance.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-calendar-check text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Attendance Sheet</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="view_profile.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-user text-lg"></i>
+                        <span class="ml-3 hidden md:inline">View Profile</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="settings.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-cog text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Settings</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="logout.html" class="flex items-center p-3 hover:bg-blue-700 rounded-md justify-center md:justify-start">
+                        <i class="fas fa-sign-out-alt text-lg"></i>
+                        <span class="ml-3 hidden md:inline">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <header class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold">Attendance Dashboard</h1>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Imran_Khan_at_2019_SCO_Meeting_%28cropped%29.jpg" alt="Admin" class="rounded-full w-16 h-16">
+            </header>
+
+            <!-- Attendance Cards -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3">Today's Attendance</h3>
+                    <p class="text-gray-600">Present: <span class="font-bold">20</span></p>
+                    <p class="text-gray-600">Absent: <span class="font-bold">5</span></p>
+                    <button id="markAttendanceBtn" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Mark Attendance</button>
+                    
+                    <div id="attendanceInput" class="hidden mt-4">
+                        <input type="text" id="rollNumber" placeholder="Enter Roll Number" class="border p-2 rounded-md">
+                        <button id="submitAttendance" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-700">Submit</button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3">Weekly Attendance</h3>
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('markAttendanceBtn').addEventListener('click', function() {
+            document.getElementById('attendanceInput').classList.toggle('hidden');
+        });
+
+        document.getElementById('submitAttendance').addEventListener('click', function() {
+            const rollNumber = document.getElementById('rollNumber').value;
+            // Logic to mark attendance based on roll number
+            console.log('Attendance marked for roll number:', rollNumber);
+            document.getElementById('rollNumber').value = ''; // Clear input
+            document.getElementById('attendanceInput').classList.add('hidden'); // Hide input again
+        });
+
+        // Restoring previous bar chart
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                datasets: [{
+                    label: 'Attendance',
+                    data: [22, 20, 22, 19, 21],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    </script>
+</body>
+</html>
